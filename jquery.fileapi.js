@@ -1204,7 +1204,7 @@
 	};
 
 
-	$.fn.fileapi.version = '0.4.9';
+	$.fn.fileapi.version = '0.4.10';
 	$.fn.fileapi.tpl = function (text){
 		var index = 0;
 		var source = "__b+='";
@@ -1307,13 +1307,25 @@
 				Image.rotate(deg === void 0 ? 'auto' : deg).get(function (err, img){
 					var
 						  selection = opts.selection
-						, minSide = Math.min(img.width, img.height)
 
-						, selWidth = minSide
-						, selHeight = minSide / ratio
+						, selWidth = img.width
+						, selHeight = selWidth / ratio
 
 						, deg = FileAPI.Image.exifOrientation[info.exif && info.exif.Orientation] || 0
 					;
+
+					if( img.width > img.height ) {
+						selHeight = img.height;
+						selWidth = selHeight * ratio;
+					}
+
+					if( selWidth > img.width ) {
+						selWidth = img.width;
+						selHeight = selWidth / ratio;
+					} else if ( selHeight > img.height ) {
+						selHeight = img.height;
+						selWidth = selHeight * ratio;
+					}
 
 					if( selection ){
 						if( /%/.test(selection) || (selection > 0 && selection < 1) ){
