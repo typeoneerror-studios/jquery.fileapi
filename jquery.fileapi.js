@@ -1,6 +1,6 @@
 /**
  * jQuery plugin for FileAPI v2+
- * @auhtor	RubaXa	<trash@rubaxa.org>
+ * @author	RubaXa	<trash@rubaxa.org>
  */
 
 /*jslint evil: true */
@@ -36,8 +36,6 @@
 			return	selector.indexOf('#') === 0;
 		}
 	;
-
-
 
 	var Plugin = function (el, options){
 		this.$el = el = $(el).on('change.fileapi', 'input[type="file"]', _bind(this, this._onSelect));
@@ -164,17 +162,14 @@
 			}
 		}
 
-
 		this.$files = this.$elem('list');
 
 		this.$fileTpl	= this.$elem('file.tpl');
 		this.itemTplFn	= $.fn.fileapi.tpl( $('<div/>').append( this.$elem('file.tpl') ).html() );
 
-
 		_each(options, function (value, option){
 			this._setOption(option, value);
 		}, this);
-
 
 		this.$el
 			.on('reset.fileapi', _bind(this, this._onReset))
@@ -183,7 +178,6 @@
 			.on('fileupload.fileapi fileprogress.fileapi filecomplete.fileapi', _bind(this, this._onFileUploadEvent))
 			.on('click', '['+_dataAttr+']', _bind(this, this._onActionClick))
 		;
-
 
 		// Controls
 		var ctrl = options.elements.ctrl;
@@ -201,7 +195,6 @@
 		if( dnd ){
 			this.$elem('dnd.el', true).dnd(_bind(this, this._onDropHover), _bind(this, this._onDrop));
 		}
-
 
 		this.$progress = this.$elem('progress');
 
@@ -227,7 +220,6 @@
 			this._redraw();
 		}
 	};
-
 
 	Plugin.prototype = {
 		constructor: Plugin,
@@ -641,22 +633,17 @@
 				}
 			}, this);
 
-
 			this.$elem('name').text( name.join(', ') );
 			this.$elem('size').text( !emptyQueue ? this._getFormatedSize(size) : '' );
-
 
 			this.$elem('empty.show').toggle( empty );
 			this.$elem('empty.hide').toggle( !empty );
 
-
 			this.$elem('emptyQueue.show').toggle( emptyQueue );
 			this.$elem('emptyQueue.hide').toggle( !emptyQueue );
 
-
 			this.$elem('active.show').toggle( active );
 			this.$elem('active.hide').toggle( !active );
-
 
 			this.$('.js-fileapi-wrapper,:file')
 				[active ? 'attr' : 'removeAttr']('aria-disabled', active)
@@ -1120,7 +1107,6 @@
 		}
 	};
 
-
 	function _isOriginTransform(trans){
 		var key;
 		for( key in trans ){
@@ -1132,7 +1118,6 @@
 		}
 		return	false;
 	}
-
 
 	function _checkFileByCriteria(file, name, imageSize, info){
 		if( imageSize && info ){
@@ -1151,7 +1136,6 @@
 		}
 	}
 
-
 	function _extractFilesOverLimit(limit, countFiles, files, other){
 		if( limit ){
 			var delta = files.length - (limit - countFiles);
@@ -1163,10 +1147,6 @@
 			}
 		}
 	}
-
-
-
-
 
 	/**
 	 * @export
@@ -1203,7 +1183,6 @@
 		return	this;
 	};
 
-
 	$.fn.fileapi.version = '0.4.10';
 	$.fn.fileapi.tpl = function (text){
 		var index = 0;
@@ -1228,7 +1207,6 @@
 			"__esc=function(val){return typeof val=='string'?val.replace(/</g,'&lt;').replace(/\"/g,'&quot;'):val;};" +
 			"with(ctx||{}){\n"+ source +"';\n}return __b;");
 	};
-
 
 	/**
 	 * FileAPI.Camera wrapper
@@ -1268,7 +1246,6 @@
 
 		return	ret;
 	};
-
 
 	/**
 	 * Wrapper for JCrop
@@ -1358,7 +1335,6 @@
 									, w = ow * (flip ? fh : fw)
 									, h = oh * (flip ? fw : fh)
 								;
-
 
 								fn({
 									  x: x
